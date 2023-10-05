@@ -262,7 +262,8 @@ table {
   background-color: #eee;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  empty-cells: show; }
+  empty-cells: show;
+  border-collapse: collapse; }
 
 td {
   padding: 0.5rem;

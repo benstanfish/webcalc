@@ -8,8 +8,7 @@
   </head>
   <body>
     <main>
-      <h1></h1>
-      <br />
+      <h1>Simple RPN</h1>
       <div class="stack">
         <table class="">
           <tbody>
@@ -49,7 +48,7 @@
             class="alert"
             type="button"
             tabindex="-1"
-            value="DEL"
+            value="&larr;"
             onclick="display.readout.value = display.readout.value.slice(0, -1);"
           />
           <input
@@ -57,7 +56,7 @@
             type="button"
             tabindex="-1"
             value="SWAP"
-            onclick=""
+            onclick="swap_xy()"
           />
 
           <input

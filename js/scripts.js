@@ -5,8 +5,6 @@ document.onkeyup = (keyUpEvent) => {
   const readout = document.getElementById('readout');
   switch (keyUpEvent.key) {
     case '0':
-      test_for_leading_zero();
-      break;
     case '1':
     case '2':
     case '3':
@@ -91,6 +89,15 @@ function add_to_history(arg) {
   }
 }
 
+function refresh_stack() {
+  if (stack.length > 0) {
+    for (let i = 0; i < stack.length; i++) {
+      let slot = document.getElementById(`stack${i}`);
+      slot.innerText = stack[i];
+    }
+  }
+}
+
 function add_stack() {
   if (stack.length > 0) {
     for (let i = 0; i < stack.length; i++) {
@@ -101,11 +108,11 @@ function add_stack() {
 }
 
 function clear_stack() {
-  for (let i = 0; i < stack.length; i++) {
-    stack.pop(i);
-  }
-  for (let i = 0; i < 4; i++) {
+  stack = [];
+  for (let i = 0; i < 5; i++) {
     let slot = document.getElementById(`stack${i}`);
     slot.innerText = '';
   }
 }
+
+function swap_xy() {}
