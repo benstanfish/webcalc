@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Web Calculator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1></h1>
+      <br />
+      <div class="stack">
+        <table class="">
+          <tbody>
+            <tr>
+              <td id="stack4"></td>
+            </tr>
+            <tr>
+              <td id="stack3"></td>
+            </tr>
+            <tr>
+              <td id="stack2"></td>
+            </tr>
+            <tr>
+              <td id="stack1"></td>
+            </tr>
+            <tr>
+              <td id="stack0"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="display">
+        <form name="display">
+          <input type="text" name="readout" id="readout" />
+        </form>
+      </div>
+      <div class="keypad">
+        <form name="keypad">
+          <input
+            class="alert"
+            type="button"
+            tabindex="-1"
+            value="AC"
+            onclick="display.readout.value = ''; clear_stack();"
+          />
+          <input
+            class="alert"
+            type="button"
+            tabindex="-1"
+            value="DEL"
+            onclick="display.readout.value = display.readout.value.slice(0, -1);"
+          />
+          <input
+            class="secondary"
+            type="button"
+            tabindex="-1"
+            value="SWAP"
+            onclick=""
+          />
+
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="&div;"
+            onclick=""
+          />
+
+          <input
+            type="button"
+            tabindex="-1"
+            value="7"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="8"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="9"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="&times;"
+            onclick=""
+          />
+
+          <input
+            type="button"
+            tabindex="-1"
+            value="4"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="5"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="6"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="&minus;"
+            onclick=""
+          />
+
+          <input
+            type="button"
+            tabindex="-1"
+            value="1"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="2"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="3"
+            onclick="display.readout.value += this.value"
+          />
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="&plus;"
+            onclick="add_to_history(this.value)"
+          />
+
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="."
+            onclick="test_for_decimal()"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="0"
+            onclick="test_for_leading_zero()"
+          />
+          <input
+            type="button"
+            class="secondary"
+            tabindex="-1"
+            value="EXP"
+            onclick="test_for_exp()"
+            disabled
+          />
+          <input
+            type="button"
+            class="info"
+            tabindex="-1"
+            value="ENTER"
+            onclick=""
+          />
+        </form>
+      </div>
+    </main>
+  </body>
+  <script src="js/scripts.js"></script>
+</html>

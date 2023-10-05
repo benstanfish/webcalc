@@ -1,0 +1,19 @@
+{
+  "name": "webcalc",
+  "version": "1.0.0",
+  "description": "calculators using html, css and js",
+  "main": "index.html",
+  "scripts": {
+    "sass": "node-sass sass/styles.scss css/styles.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benstanfish/webcalc.git"
+  },
+  "author": "Ben Fisher",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/benstanfish/webcalc/issues"
+  },
+  "homepage": "https://github.com/benstanfish/webcalc#readme"
+}

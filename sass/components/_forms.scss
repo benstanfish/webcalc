@@ -1,0 +1,58 @@
+/* forms */
+
+form {
+    width: 50%;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+form ul li {
+    font-size: 80%;
+}
+
+form ul {
+    margin-bottom: 1.5rem;
+}
+
+input {
+    font-size: 1.4rem;
+
+    display: block;
+
+    margin-bottom: 1.2rem;
+    padding: 0.75rem;
+
+    border: 1px solid lightgray;
+    border-radius: 3px;
+
+    width: 100%;
+}
+
+input:focus {
+    outline: 3px solid dodgerblue;
+    outline-offset: 2px;
+}
+
+label {
+    font-size: 80%;
+    text-justify: left;
+    margin-bottom: 0.5rem;
+}
+
+.error {
+    font-weight: bold;
+    color: tomato;
+    text-align: center;
+    margin-top: 1.8rem;
+}
+
+.success {
+    font-weight: bold;
+    color: dodgerblue;
+    text-align: center;
+    margin-top: 1.8rem;
+}

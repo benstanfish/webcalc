@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Resize font to change 1rem = 1px */
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  line-height: 1.5;
+  font-size: 1.8rem;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+
+  counter-reset: figcaption 0;
+  counter-increment: figcaption 1;
+
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p.h1 {
+  font-family: 'Roboto Condensed', 'Arial', sans-serif;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  color: black;
+}
+h1,
+p.h1 {
+  font-size: 4.8rem;
+}
+h2 {
+  font-size: 4.2rem;
+}
+h3 {
+  font-size: 3.6rem;
+}
+h4 {
+  font-size: 2.8rem;
+}
+h5 {
+  font-size: 2.4rem;
+}
+h6 {
+  font-size: 1.8rem;
+}
+
+p {
+  margin-bottom: 2.4rem;
+}
+
+strong,
+b {
+  font-weight: bold;
+}

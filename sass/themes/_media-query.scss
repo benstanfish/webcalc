@@ -1,0 +1,58 @@
+@media screen and (max-width: 1000px) {
+    .banner {
+        padding: 0 3.6rem;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media screen and (max-width: 700px) {
+
+    body {
+        line-height: 1.325;
+    }
+    
+    h1 {font-size: 2.8rem;}
+    h2 {font-size: 2.4rem;}
+    h3 {font-size: 2.4rem;}
+    h4 {font-size: 2.2rem;}
+    h5 {font-size: 2.2rem;}
+    h6 {font-size: 2rem;}
+
+    .banner {
+        padding: 0 2.4rem;
+        height: 240px;
+    }
+
+    .banner .container {
+        height: 240px;
+        padding: 1rem 2rem;
+    }
+
+    .banner .lead {
+        font-size: 4rem;
+    }
+
+    nav ul {
+        justify-content: center;
+        margin: 0 2.4rem;
+    }
+
+    main.index {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    main {
+        margin: 3.6rem 0;
+        padding: 2.4rem 2rem;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

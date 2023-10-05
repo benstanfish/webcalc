@@ -1,0 +1,41 @@
+/* top navigation */
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+    
+    border-bottom: 1px solid lightgrey;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+
+    display:  flex;
+    justify-content: flex-end;
+    margin: 0 4.8rem;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    padding: 1.6rem 2rem;
+    text-decoration: none;
+    color: #333;
+
+    font-family: 'Roboto Condensed';
+    font-weight: thin;
+    font-size: 2rem;
+    word-wrap: nowrap;
+    transition: all 300ms ease;
+}
+
+nav li a:hover {
+    color: dodgerblue;
+    font-weight: bold;
+}
