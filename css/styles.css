@@ -201,9 +201,9 @@ header {
   left: 0; }
 
 main {
-  margin: 4.8rem auto;
-  padding: 4.8rem 2rem;
-  max-width: 10in; }
+  max-width: 10in;
+  margin: auto;
+  padding: 2.4rem; }
 
 /* top navigation */
 nav {
@@ -241,9 +241,6 @@ nav li a:hover {
 section {
   margin-top: 3.6rem; }
 
-main {
-  margin: auto; }
-
 div {
   border-radius: 6px; }
 
@@ -252,10 +249,12 @@ div {
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 0 2rem;
-  margin-bottom: 4rem; }
+  margin-bottom: 2rem; }
   .display form input {
     border-radius: 0;
-    text-align: right; }
+    text-align: right;
+    width: 100%;
+    font-family: 'Noto Sans Mono'; }
 
 table {
   width: 100%;
@@ -276,7 +275,7 @@ td {
   border-bottom: 2px solid #fff; }
 
 #readout {
-  font-size: 3rem;
+  font-size: 2.4rem;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px; }
 
@@ -301,6 +300,9 @@ input {
 .alert {
   background-color: tomato; }
 
+.warning {
+  background-color: orange; }
+
 .info {
   background-color: dodgerblue;
   color: white; }
@@ -310,44 +312,3 @@ input {
 
 .secondary {
   background-color: #ccc; }
-
-@media screen and (max-width: 1000px) {
-  .banner {
-    padding: 0 3.6rem; }
-  .card-container {
-    grid-template-columns: repeat(3, 1fr); } }
-
-@media screen and (max-width: 700px) {
-  body {
-    line-height: 1.325; }
-  h1 {
-    font-size: 2.8rem; }
-  h2 {
-    font-size: 2.4rem; }
-  h3 {
-    font-size: 2.4rem; }
-  h4 {
-    font-size: 2.2rem; }
-  h5 {
-    font-size: 2.2rem; }
-  h6 {
-    font-size: 2rem; }
-  .banner {
-    padding: 0 2.4rem;
-    height: 240px; }
-  .banner .container {
-    height: 240px;
-    padding: 1rem 2rem; }
-  .banner .lead {
-    font-size: 4rem; }
-  nav ul {
-    justify-content: center;
-    margin: 0 2.4rem; }
-  main.index {
-    margin-top: 0;
-    padding-top: 0; }
-  main {
-    margin: 3.6rem 0;
-    padding: 2.4rem 2rem; }
-  .card-container {
-    grid-template-columns: repeat(1, 1fr); } }

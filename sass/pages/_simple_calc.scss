@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-main {
-  margin: auto;
-}
-
 div {
   border-radius: 6px;
 }
@@ -15,12 +11,13 @@ div {
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 0 2rem;
 
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 
   & input {
     border-radius: 0;
     text-align: right;
-    // font-family: 'Noto Sans Mono';
+    width: 100%;
+    font-family: 'Noto Sans Mono';
   }
 }
 
@@ -46,7 +43,7 @@ td {
 }
 
 #readout {
-  font-size: 3rem;
+  font-size: 2.4rem;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
@@ -77,6 +74,9 @@ input {
 
 .alert {
   background-color: tomato;
+}
+.warning {
+  background-color: orange;
 }
 .info {
   background-color: dodgerblue;
