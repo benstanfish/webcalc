@@ -8,8 +8,15 @@ const themeCss = document.getElementById('theme-css');
 window.onload = () => {
   refresh_stack();
   const checkUserTheme = window.matchMedia('(prefers-color-scheme: dark)');
-  if (checkUserTheme.matches) {
+  const themeHistory = localStorage.getItem('storedTheme');
+
+  if (themeHistory != null) {
+    themeCss.setAttribute('href', `css/styles-${themeHistory}.css`);
+  } else if (checkUserTheme.matches) {
     themeCss.setAttribute('href', 'css/styles-dark.css');
+    localStorage.setItem('storedTheme', 'dark');
+  } else {
+    localStorage.setItem('storedTheme', 'light');
   }
 
   if (themeCss.getAttribute('href') === 'css/styles-dark.css') {
