@@ -4,7 +4,9 @@
   "description": "calculators using html, css and js",
   "main": "index.html",
   "scripts": {
-    "sass": "node-sass sass/styles.scss css/styles.css -w"
+    "sass": "node-sass sass/styles.scss css/styles.css -w",
+    "light": "node-sass sass/styles-light.scss css/styles-light.css -w",
+    "dark": "node-sass sass/styles-dark.scss css/styles-dark.css -w"
   },
   "repository": {
     "type": "git",

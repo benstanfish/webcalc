@@ -1,0 +1,25 @@
+$light-colors: (
+  'accent': #777,
+  'primary': #eee,
+  'secondary': #ccc,
+  'contrast': #333,
+  'bg': white,
+  'alert': tomato,
+  'warning': orange,
+  'info': dodgerblue,
+  'success': mediumaquamarine,
+  'example': #ccc,
+);
+
+$dark-colors: (
+  'accent': #ccc,
+  'primary': #444,
+  'secondary': #777,
+  'contrast': #eee,
+  'bg': black,
+  'alert': hsl(9, 56%, 20%),
+  'warning': hsl(39, 100%, 20%),
+  'info': hsl(210, 78%, 20%),
+  'success': hsl(159, 32%, 20%),
+  'example': hsl(0, 0%, 20%),
+);

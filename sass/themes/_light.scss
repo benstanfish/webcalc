@@ -1,0 +1,23 @@
+$bg: map-get(
+  $map: $light-colors,
+  $key: 'bg',
+);
+$contrast: map-get(
+  $map: $light-colors,
+  $key: 'contrast',
+);
+$primary: map-get(
+  $map: $light-colors,
+  $key: 'primary',
+);
+
+@each $name, $color in $light-colors {
+  .#{$name} {
+    background-color: $color;
+  }
+}
+
+body {
+  background-color: $bg;
+  color: $contrast;
+}

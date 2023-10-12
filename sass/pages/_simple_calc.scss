@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 div {
   border-radius: 6px;
 }
@@ -23,7 +21,7 @@ div {
 
 table {
   width: 100%;
-  background-color: #eee;
+  background-color: $primary;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   empty-cells: show;
@@ -31,15 +29,15 @@ table {
 }
 
 td {
-  padding: 0.5rem;
+  padding: 0.3755rem;
   padding-right: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-align: right;
-  height: 3rem;
 }
 
 .stack {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid $bg;
+  font-family: 'Noto Sans Mono';
 }
 
 #readout {
@@ -48,22 +46,25 @@ td {
   border-bottom-right-radius: 6px;
 }
 
+.keypad:not(:last-of-type) {
+  margin-bottom: 6rem;
+}
+
 .keypad form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 2rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-gap: 1rem;
 }
 
 .keypad div {
   padding: 1rem;
-
   display: flex;
   justify-content: center;
 }
 
 input {
-  background-color: #eee;
+  background-color: $primary;
+  color: $contrast;
 
   font-size: 1.8rem;
   padding: 1rem;
@@ -72,19 +73,15 @@ input {
   border: none;
 }
 
-.alert {
-  background-color: tomato;
+.title {
+  display: flex;
+  align-items: baseline;
 }
-.warning {
-  background-color: orange;
+
+.right {
+  margin-left: auto;
 }
-.info {
-  background-color: dodgerblue;
-  color: white;
-}
-.success {
-  background-color: mediumaquamarine;
-}
-.secondary {
-  background-color: #ccc;
+
+#theme-icon {
+  cursor: pointer;
 }

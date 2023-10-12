@@ -1,6 +1,37 @@
 'use strict';
-let stack = [];
+let stack = [0, 0, 0, 0, 0];
 let expFlag = false;
+
+const themeButton = document.getElementById('theme-icon');
+const themeCss = document.getElementById('theme-css');
+
+window.onload = () => {
+  refresh_stack();
+  const checkUserTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  if (checkUserTheme.matches) {
+    themeCss.setAttribute('href', 'css/styles-dark.css');
+  }
+
+  if (themeCss.getAttribute('href') === 'css/styles-dark.css') {
+    themeButton.innerText = 'dark_mode';
+    themeButton.style.color = 'goldenrod';
+  } else {
+    themeButton.innerText = 'light_mode';
+    themeButton.style.color = 'tomato';
+  }
+};
+
+themeButton.addEventListener('click', () => {
+  if (themeCss.getAttribute('href') === 'css/styles-dark.css') {
+    themeCss.setAttribute('href', 'css/styles-light.css');
+    themeButton.innerText = 'light_mode';
+    themeButton.style.color = 'tomato';
+  } else {
+    themeCss.setAttribute('href', 'css/styles-dark.css');
+    themeButton.innerText = 'dark_mode';
+    themeButton.style.color = 'goldenrod';
+  }
+});
 
 document.onkeyup = (keyUpEvent) => {
   const readout = document.getElementById('readout');
@@ -21,70 +52,67 @@ document.onkeyup = (keyUpEvent) => {
       test_for_decimal();
       break;
     case 'Delete':
+      clear_stack();
       readout.value = '';
       expFlag = false;
       break;
     case 'ArrowDown':
-      pull_from_stack();
+      cycle_stack_down();
+      break;
+    case 'ArrowUp':
+      cycle_stack_up();
       break;
     case 'e':
-      toggle_eex();
+      // toggle_eex();
       break;
     case 'd':
     case 'Backspace':
     case 'ArrowLeft':
       readout.value = readout.value.slice(0, -1);
-      if (readout.value.length <= 0 && expFlag === true) {
-        toggle_eex();
-      }
+      // if (readout.value.length <= 0 && expFlag === true) {
+      //   toggle_eex();
+      // }
       break;
     case '+':
-      // if (readout.value.length !== 0) add_to_history('+');
+      xy_sum();
       break;
     case '-':
-      // if (readout.value.length !== 0) add_to_history('-');
+      xy_diff();
       break;
     case '/':
-      // if (readout.value.length !== 0) add_to_history('/');
+      xy_div();
       break;
     case '*':
     case 'x':
-      // if (readout.value.length !== 0) add_to_history('*');
+      xy_times();
       break;
     case '=':
     case 'Enter':
-    case 'ArrowUp':
       add_to_stack();
-      reset_eex();
+      // reset_eex();
       break;
+      xy_sum();
     default:
   }
 };
 
-function clear_stack() {
-  stack = [];
-  for (let i = 0; i < 5; i++) {
-    let slot = document.getElementById(`stack${i}`);
-    slot.innerText = '';
+function refresh_stack() {
+  for (let i = 0; i < stack.length; i++) {
+    const cell = document.getElementById(`stack${i}`);
+    cell.innerText = stack[i];
   }
 }
 
-function refresh_stack() {
-  for (let i = 0; i < 5; i++) {
-    const cell = document.getElementById(`stack${i}`);
-    cell.innerText = '';
-  }
-  if (stack.length > 0) {
-    for (let i = 0; i < stack.length; i++) {
-      const cell = document.getElementById(`stack${i}`);
-      cell.innerText = stack[i];
-    }
-  }
+function clear_stack() {
+  stack = [0, 0, 0, 0, 0];
+  refresh_stack();
 }
 
 function add_to_stack() {
+  const readout = document.getElementById('readout');
   if (readout.value != '') {
-    stack.unshift(readout.value);
+    stack.push(readout.value);
+    stack.shift();
     refresh_stack();
     readout.value = '';
     console.log(stack);
@@ -92,6 +120,7 @@ function add_to_stack() {
 }
 
 function pull_from_stack() {
+  const readout = document.getElementById('readout');
   let to_readout = stack.shift();
   refresh_stack();
   if (to_readout !== undefined) {
@@ -101,14 +130,39 @@ function pull_from_stack() {
   }
 }
 
+function cycle_stack_down() {
+  const readout = document.getElementById('readout');
+  let from_readout = '0';
+  if (readout.value.length != 0) {
+    from_readout = readout.value;
+  }
+  let to_readout = stack.pop();
+  stack.unshift(from_readout);
+  refresh_stack();
+  if (to_readout !== undefined) {
+    readout.value = to_readout;
+  } else {
+    readout.value = '';
+  }
+}
+
+function cycle_stack_up() {
+  const from_stack0 = document.getElementById('stack0').innerText;
+  const from_readout = document.getElementById('readout').value;
+  stack.shift();
+  stack.push(from_readout);
+  document.getElementById('readout').value = from_stack0;
+  refresh_stack();
+}
+
 function swap_xy() {
   const readout = document.getElementById('readout');
-  const stack0 = document.getElementById('stack0');
+  const history = document.getElementById('stack4');
   readout.value.length === 0 ? (readout.value = 0) : readout.value;
-  stack0.innerText.length === 0 ? (stack0.innerText = 0) : stack0.innerText;
+  history.innerText.length === 0 ? (history.innerText = 0) : history.innerText;
   let temp = readout.value;
-  readout.value = stack0.innerText;
-  stack0.innerText = temp;
+  readout.value = history.innerText;
+  history.innerText = temp;
 }
 
 function test_for_leading_zero() {
@@ -192,4 +246,30 @@ function add_to_history(arg) {
     history.value += ' ' + readout.value + ' ' + arg;
     readout.value = '';
   }
+}
+
+// Basic Operations
+function xy_sum() {
+  readout.value = Number(stack4.innerText) + Number(readout.value);
+}
+function xy_diff() {
+  readout.value = Number(stack4.innerText) - Number(readout.value);
+}
+function xy_times() {
+  readout.value = Number(stack4.innerText) * Number(readout.value);
+}
+function xy_div() {
+  readout.value = Number(stack4.innerText) / Number(readout.value);
+}
+
+function reciprocal() {
+  readout.value = 1 / Number(readout.value);
+}
+
+function get_pi() {
+  readout.value = Math.PI;
+}
+
+function get_e() {
+  readout.value = Math.E;
 }
