@@ -1,6 +1,8 @@
 'use strict';
 let stack = [0, 0, 0, 0, 0];
 let expFlag = false;
+let degFlag = false;
+let invFlag = false;
 
 const themeButton = document.getElementById('theme-icon');
 const themeCss = document.getElementById('theme-css');
@@ -33,10 +35,12 @@ themeButton.addEventListener('click', () => {
     themeCss.setAttribute('href', 'css/styles-light.css');
     themeButton.innerText = 'light_mode';
     themeButton.style.color = 'tomato';
+    localStorage.setItem('storedTheme', 'light');
   } else {
     themeCss.setAttribute('href', 'css/styles-dark.css');
     themeButton.innerText = 'dark_mode';
     themeButton.style.color = 'goldenrod';
+    localStorage.setItem('storedTheme', 'dark');
   }
 });
 
@@ -279,4 +283,140 @@ function get_pi() {
 
 function get_e() {
   readout.value = Math.E;
+}
+
+function exp_y(power = undefined) {
+  const from_readout = Number(readout.value);
+  const from_stack = Number(stack4.innerText);
+
+  readout.value = from_readout ** (power || from_stack);
+}
+
+function e_x() {
+  const from_readout = Number(readout.value);
+  readout.value = Math.E ** from_readout;
+}
+
+function ln_x() {
+  const from_readout = Number(readout.value);
+  readout.value = Math.log(from_readout);
+}
+
+function log_x() {
+  const from_readout = Number(readout.value);
+  readout.value = Math.log10(from_readout);
+}
+
+function y_root(power = undefined) {
+  const from_readout = Number(readout.value);
+  const from_stack = Number(stack4.innerText);
+
+  readout.value = from_readout ** (1 / (power || from_stack));
+}
+
+function y_mod_x() {
+  const from_readout = Number(readout.value);
+  const from_stack = Number(stack4.innerText);
+
+  readout.value = from_stack % from_readout;
+}
+
+function div_int() {
+  const from_readout = Number(readout.value);
+  const from_stack = Number(stack4.innerText);
+
+  readout.value = Math.trunc(from_stack / from_readout);
+}
+
+function div_dec() {
+  const from_readout = Number(readout.value);
+  const from_stack = Number(stack4.innerText);
+
+  readout.value =
+    from_stack / from_readout - Math.trunc(from_stack / from_readout);
+}
+
+function toggle_deg() {
+  const degBtn = document.getElementById('degBtn');
+  degFlag = !degFlag;
+  if (degFlag) {
+    degBtn.classList.remove('info');
+    degBtn.classList.add('warning');
+    degBtn.value = 'DEG';
+  } else {
+    degBtn.classList.remove('warning');
+    degBtn.classList.add('info');
+    degBtn.value = 'RAD';
+  }
+}
+
+function toggle_inverse() {
+  const invBtn = document.getElementById('invBtn');
+  const sinBtn = document.getElementById('sin');
+  const cosBtn = document.getElementById('cos');
+  const tanBtn = document.getElementById('tan');
+  invFlag = !invFlag;
+  if (invFlag) {
+    invBtn.classList.remove('info');
+    invBtn.classList.add('warning');
+    sinBtn.value = 'CSC';
+    cosBtn.value = 'SEC';
+    tanBtn.value = 'COT';
+  } else {
+    invBtn.classList.remove('warning');
+    invBtn.classList.add('info');
+    sinBtn.value = 'SIN';
+    cosBtn.value = 'COS';
+    tanBtn.value = 'TAN';
+  }
+}
+
+function sin_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = Math.sin(x);
+  } else {
+    readout.value = Math.sin((x * Math.Pi) / 180);
+  }
+}
+function cos_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = Math.cos(x);
+  } else {
+    readout.value = Math.cos((x * Math.Pi) / 180);
+  }
+}
+function tan_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = Math.tan(x);
+  } else {
+    readout.value = Math.tan((x * Math.Pi) / 180);
+  }
+}
+
+function csc_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = 1 / Math.sin(x);
+  } else {
+    readout.value = 1 / Math.sin((x * Math.Pi) / 180);
+  }
+}
+function sec_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = 1 / Math.cos(x);
+  } else {
+    readout.value = 1 / Math.cos((x * Math.Pi) / 180);
+  }
+}
+function cot_x() {
+  const x = Number(readout.value);
+  if (!degFlag) {
+    readout.value = 1 / Math.tan(x);
+  } else {
+    readout.value = 1 / Math.tan((x * Math.Pi) / 180);
+  }
 }
