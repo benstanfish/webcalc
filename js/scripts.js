@@ -11,6 +11,8 @@ window.onload = () => {
   refresh_stack();
   const checkUserTheme = window.matchMedia('(prefers-color-scheme: dark)');
   const themeHistory = localStorage.getItem('storedTheme');
+  const isDegMode = localStorage.getItem('isDegMode');
+  const degBtn = document.getElementById('degBtn');
 
   if (themeHistory != null) {
     themeCss.setAttribute('href', `css/styles-${themeHistory}.css`);
@@ -27,6 +29,21 @@ window.onload = () => {
   } else {
     themeButton.innerText = 'light_mode';
     themeButton.style.color = 'tomato';
+  }
+
+  if (isDegMode == null) {
+    localStorage.setItem('isDegMode', degFlag);
+  } else {
+    degFlag = localStorage.getItem('isDegMode');
+  }
+  if (!degFlag) {
+    degBtn.classList.remove('info');
+    degBtn.classList.add('warning');
+    degBtn.value = 'RAD';
+  } else {
+    degBtn.classList.remove('warning');
+    degBtn.classList.add('info');
+    degBtn.value = 'DEG';
   }
 };
 
@@ -342,6 +359,7 @@ function div_dec() {
 function toggle_deg() {
   const degBtn = document.getElementById('degBtn');
   degFlag = !degFlag;
+  localStorage.setItem('isDegMode', degFlag);
   if (!degFlag) {
     degBtn.classList.remove('info');
     degBtn.classList.add('warning');
