@@ -1,8 +1,8 @@
 'use strict';
 let stack = [0, 0, 0, 0, 0];
 let expFlag = false;
-let degFlag = false;
-let invFlag = false;
+let degFlag = true;
+let normTrigFlag = true;
 
 const themeButton = document.getElementById('theme-icon');
 const themeCss = document.getElementById('theme-css');
@@ -74,7 +74,7 @@ document.onkeyup = (keyUpEvent) => {
       cycle_stack_up();
       break;
     case 'e':
-      // toggle_eex();
+      readout.value += 'e';
       break;
     case 'd':
     case 'Backspace':
@@ -122,7 +122,8 @@ function clear_stack() {
 function add_to_stack() {
   const readout = document.getElementById('readout');
   if (readout.value != '') {
-    stack.push(readout.value);
+    let x = Number(readout.value);
+    stack.push(x);
     stack.shift();
     refresh_stack();
     readout.value = '';
@@ -176,21 +177,22 @@ function swap_xy() {
   history.innerText = temp;
 }
 
-function test_for_leading_zero() {
-  const readout = document.getElementById('readout');
-  const history = document.getElementById('history');
-  if (readout.value.length === 0 && history.value.length === 0) {
-    return false;
-  } else {
-    readout.value = readout.value += '0';
-    return true;
-  }
-}
+// function test_for_leading_zero() {
+//   const readout = document.getElementById('readout');
+//   const history = document.getElementById('history');
+//   if (readout.value.length === 0 && history.value.length === 0) {
+//     return false;
+//   } else {
+//     readout.value = readout.value += '0';
+//     return true;
+//   }
+// }
 
 function test_for_decimal() {
   const readout = document.getElementById('readout');
   if (readout.value.length === 0) {
-    return false;
+    readout.value += '0.';
+    return true;
   } else if (readout.value.indexOf('.') >= 0) {
     return false;
   } else {
@@ -203,6 +205,7 @@ function toggle_eex() {
   const btn = document.getElementById('eex');
   const readout = document.getElementById('readout');
   if (readout.value.length > 0) {
+    readout.value += 'e';
   } else {
     readout.value = 1;
   }
@@ -339,84 +342,118 @@ function div_dec() {
 function toggle_deg() {
   const degBtn = document.getElementById('degBtn');
   degFlag = !degFlag;
-  if (degFlag) {
+  if (!degFlag) {
     degBtn.classList.remove('info');
     degBtn.classList.add('warning');
-    degBtn.value = 'DEG';
+    degBtn.value = 'RAD';
   } else {
     degBtn.classList.remove('warning');
     degBtn.classList.add('info');
-    degBtn.value = 'RAD';
+    degBtn.value = 'DEG';
   }
 }
 
-function toggle_inverse() {
-  const invBtn = document.getElementById('invBtn');
+function toggle_reciprocal() {
+  const normTrigBtn = document.getElementById('normTrigBtn');
+
   const sinBtn = document.getElementById('sin');
   const cosBtn = document.getElementById('cos');
   const tanBtn = document.getElementById('tan');
-  invFlag = !invFlag;
-  if (invFlag) {
-    invBtn.classList.remove('info');
-    invBtn.classList.add('warning');
+  const asinBtn = document.getElementById('asin');
+  const acosBtn = document.getElementById('acos');
+  const atanBtn = document.getElementById('atan');
+  const btns = [sinBtn, cosBtn, tanBtn, asinBtn, acosBtn, atanBtn];
+  normTrigFlag = !normTrigFlag;
+  if (!normTrigFlag) {
+    normTrigBtn.classList.remove('info');
+    normTrigBtn.classList.add('warning');
+    normTrigBtn.value = '1/TRIG';
     sinBtn.value = 'CSC';
     cosBtn.value = 'SEC';
     tanBtn.value = 'COT';
+    asinBtn.value = 'ACSC';
+    acosBtn.value = 'ASEC';
+    atanBtn.value = 'ACOT';
+    btns.forEach((element) => {
+      element.classList.remove('secondary');
+      element.classList.add('primary');
+    });
   } else {
-    invBtn.classList.remove('warning');
-    invBtn.classList.add('info');
+    normTrigBtn.classList.remove('warning');
+    normTrigBtn.classList.add('info');
+    normTrigBtn.value = 'TRIG';
     sinBtn.value = 'SIN';
     cosBtn.value = 'COS';
     tanBtn.value = 'TAN';
+    asinBtn.value = 'ASIN';
+    acosBtn.value = 'ACOS';
+    atanBtn.value = 'ATAN';
+    btns.forEach((element) => {
+      element.classList.remove('primary');
+      element.classList.add('secondary');
+    });
   }
+}
+function trig(func) {
+  const funcs = {
+    sin: Math.sin,
+    cos: Math.cos,
+    tan: Math.tan,
+  };
+  const x =
+    degFlag === false
+      ? Number(readout.value)
+      : (Number(readout.value) * Math.PI) / 180;
+  readout.value = normTrigFlag === true ? funcs[func](x) : 1 / funcs[func](x);
+}
+function aTrig(func) {
+  const funcs = {
+    asin: Math.asin,
+    acos: Math.acos,
+    atan: Math.atan,
+  };
+  let x = readout.value;
+  x = normTrigFlag === true ? funcs[func](x) : 1 / funcs[func](x);
+  readout.value = degFlag === false ? x : (x * 180) / Math.PI;
 }
 
-function sin_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = Math.sin(x);
-  } else {
-    readout.value = Math.sin((x * Math.Pi) / 180);
-  }
+function to_deg() {
+  const x = readout.value;
+  readout.value = (x * 180) / Math.PI;
 }
-function cos_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = Math.cos(x);
-  } else {
-    readout.value = Math.cos((x * Math.Pi) / 180);
-  }
-}
-function tan_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = Math.tan(x);
-  } else {
-    readout.value = Math.tan((x * Math.Pi) / 180);
-  }
+function to_rad() {
+  const x = readout.value;
+  readout.value = (x * Math.PI) / 180;
 }
 
-function csc_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = 1 / Math.sin(x);
-  } else {
-    readout.value = 1 / Math.sin((x * Math.Pi) / 180);
+function factorial() {
+  let x = Math.floor(readout.value);
+  if (x === 0 || x === 1) {
+    readout.value = x;
   }
+  for (let i = x - 1; i > 0; i--) {
+    x *= i;
+  }
+  readout.value = x;
 }
-function sec_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = 1 / Math.cos(x);
-  } else {
-    readout.value = 1 / Math.cos((x * Math.Pi) / 180);
+function factorialize(x) {
+  if (x === 0 || x === 1) {
+    readout.value = x;
   }
+  for (let i = x - 1; i > 0; i--) {
+    x *= i;
+  }
+  return x;
 }
-function cot_x() {
-  const x = Number(readout.value);
-  if (!degFlag) {
-    readout.value = 1 / Math.tan(x);
-  } else {
-    readout.value = 1 / Math.tan((x * Math.Pi) / 180);
-  }
+
+function perm() {
+  const y = Number(readout.value);
+  const x = Number(stack4.innerHTML);
+  readout.value = factorialize(x) / factorialize(x - y);
+}
+
+function comb() {
+  const y = Number(readout.value);
+  const x = Number(stack4.innerText);
+  readout.value = factorialize(x) / (factorialize(y) * factorialize(x - y));
 }

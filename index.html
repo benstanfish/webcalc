@@ -202,13 +202,15 @@
             id="eex"
             onclick="blur(); toggle_eex()"
             disabled
+            hidden
           />
           <input
             type="button"
             tabindex="-1"
             value="0"
             id="0"
-            onclick="blur(); test_for_leading_zero()"
+            style="grid-column: 2/3"
+            onclick="blur(); display.readout.value += this.value"
           />
           <input
             type="button"
@@ -240,7 +242,7 @@
           <input
             type="button"
             tabindex="-1"
-            value="SQR"
+            value="x²"
             id=""
             class="secondary"
             onclick="blur(); exp_y(2)"
@@ -256,7 +258,7 @@
           <input
             type="button"
             tabindex="-1"
-            value="x^y"
+            value="xʸ"
             id=""
             class="secondary"
             onclick="blur(); exp_y()"
@@ -264,7 +266,7 @@
           <input
             type="button"
             tabindex="-1"
-            value="x^(1/y)"
+            value="ʸ√x"
             id=""
             class="secondary"
             onclick="blur(); y_root()"
@@ -273,7 +275,7 @@
           <input
             type="button"
             tabindex="-1"
-            value="e^x"
+            value="eˣ"
             id=""
             class="secondary"
             onclick="blur(); e_x()"
@@ -322,26 +324,26 @@
           <input
             type="button"
             tabindex="-1"
-            value="DEC"
-            id=""
+            value="x!"
+            id="fact"
             class="secondary"
-            onclick="blur(); div_dec();"
+            onclick="blur(); factorial();"
           />
           <input
             type="button"
             tabindex="-1"
-            value="xPy"
+            value="yPx"
             id=""
             class="secondary"
-            onclick="blur(); "
+            onclick="blur(); perm();"
           />
           <input
             type="button"
             tabindex="-1"
-            value="xCy"
+            value="yCx"
             id=""
             class="secondary"
-            onclick="blur(); "
+            onclick="blur(); comb();"
           />
           <input
             type="button"
@@ -356,18 +358,17 @@
             type="button"
             class="info"
             tabindex="-1"
-            value="RAD"
+            value="DEG"
             id="degBtn"
             onclick="blur(); toggle_deg();"
           />
-
           <input
             type="button"
             tabindex="-1"
             value="SIN"
             id="sin"
             class="secondary"
-            onclick="blur(); sin_x()"
+            onclick="blur(); trig(this.id);"
           />
           <input
             type="button"
@@ -375,7 +376,7 @@
             value="COS"
             id="cos"
             class="secondary"
-            onclick="blur();cos_x()"
+            onclick="blur(); trig(this.id);"
           />
           <input
             type="button"
@@ -383,41 +384,56 @@
             value="TAN"
             id="tan"
             class="secondary"
-            onclick="blur(); tan_x()"
+            onclick="blur(); trig(this.id);"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="&rarr;DEG"
+            id="tan"
+            class="primary"
+            onclick="blur(); to_deg();"
           />
 
           <input
             type="button"
             tabindex="-1"
-            value="INV"
-            id="invBtn"
-            style="grid-column: 1/2"
+            value="TRIG"
+            id="normTrigBtn"
             class="info"
-            onclick="blur(); toggle_inverse();"
+            onclick="blur(); toggle_reciprocal();"
           />
           <input
             type="button"
             tabindex="-1"
             value="ASIN"
-            id=""
+            id="asin"
             class="secondary"
-            onclick="blur(); "
+            onclick="blur(); aTrig(this.id);"
           />
           <input
             type="button"
             tabindex="-1"
             value="ACOS"
-            id=""
+            id="acos"
             class="secondary"
-            onclick="blur(); "
+            onclick="blur(); aTrig(this.id);"
           />
           <input
             type="button"
             tabindex="-1"
             value="ATAN"
-            id=""
+            id="atan"
             class="secondary"
-            onclick="blur(); "
+            onclick="blur(); aTrig(this.id);"
+          />
+          <input
+            type="button"
+            tabindex="-1"
+            value="&rarr;RAD"
+            id="tan"
+            class="primary"
+            onclick="blur(); to_rad();"
           />
         </form>
       </div>
